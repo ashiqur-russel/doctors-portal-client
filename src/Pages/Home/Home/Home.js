@@ -1,6 +1,7 @@
 import React from "react";
 import Banner from "../Banner/Banner";
 import Cards from "../Card/Cards";
+import Exceptional from "../Exceptional/Exceptional";
 import Services from "../Services/Services";
 
 const Home = () => {
@@ -9,6 +10,7 @@ const Home = () => {
       <Banner></Banner>
       <Cards></Cards>
       <Services></Services>
+      <Exceptional></Exceptional>
     </div>
   );
 };
