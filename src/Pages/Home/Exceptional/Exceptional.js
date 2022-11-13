@@ -1,5 +1,6 @@
 import React from "react";
 import img from "../../../assets/images/treatment.png";
+import PrimaryButton from "../../../components/PrimaryButton/PrimaryButton";
 
 const Exceptional = () => {
   return (
@@ -17,9 +18,7 @@ const Exceptional = () => {
             you gain confidence in your smile! Questions or looking to book an
             appointment?
           </p>
-          <button className="btn bg-gradient-to-r from-primary to-secondary btn-primary text-white">
-            Appointment
-          </button>{" "}
+          <PrimaryButton>Details</PrimaryButton>
         </div>
       </div>
     </div>
