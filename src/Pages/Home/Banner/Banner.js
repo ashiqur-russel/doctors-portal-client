@@ -8,7 +8,7 @@ const Banner = () => {
       style={{ backgroundImage: `url("${BGImage}")`, objectFit: "cover" }}
     >
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <img src={Chair} className="rounded-lg shadow-2xl w-1/2" alt="" />
+        <img src={Chair} className="rounded-lg shadow-2xl lg:w-1/2" alt="" />
         <div>
           <h1 className="text-3xl font-bold">Your New Smile Starts Here!</h1>
           <p className="py-6">
