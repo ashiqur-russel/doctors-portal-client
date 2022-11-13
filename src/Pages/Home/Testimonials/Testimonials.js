@@ -10,21 +10,24 @@ const Testimonials = () => {
     {
       _id: 1,
       name: "Ashiqur Russel",
-      review: "",
+      review:
+        "The best dental care I have ever experienced! Professional, courteous, and friendly staff made me feel like family… would highly recommend to anyone!!!",
       location: "Berlin",
       img: people1,
     },
     {
       _id: 2,
       name: "Biplob Bipu",
-      review: "",
+      review:
+        "I wish I had switched to them sooner. Great attention and service. You know you are in good hands when you learn things about your bone structure that you had no clue about. Keen eye on detail!",
       location: "Chemnitz",
       img: people2,
     },
     {
       _id: 3,
       name: "Saad Abdullah",
-      review: "",
+      review:
+        " Always have a great, smooth experience here. The staff and (DN) are friendly, respectful, caring and courteous of your time. The office is run very smoothly and efficiently. Definitely recommend.",
       location: "Nürnberg",
       img: people3,
     },
@@ -34,7 +37,7 @@ const Testimonials = () => {
       <div className="flex justify-between">
         <div className="">
           <h4 className="text-xl text-primary font-bold">Testimonial</h4>
-          <h2 className="text-4´3xl">What Our Patients Says</h2>
+          <h2 className="text-3xl">What Our Patients Says</h2>
         </div>
         <figure>
           {" "}

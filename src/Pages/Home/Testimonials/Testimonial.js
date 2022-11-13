@@ -6,7 +6,7 @@ const Testimonial = ({ review }) => {
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <div className="card-body">
-        <p>If a dog chews shoes whose shoes does he choose?</p>
+        <p>{userReview}</p>
         <div className="flex items-center">
           <div className="avatar mr-6">
             <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
