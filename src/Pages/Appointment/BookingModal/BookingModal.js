@@ -20,6 +20,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate }) => {
       email,
       phone,
     };
+    console.log(7 > 6 && 8 < 6 && 6 > 4);
 
     // TODO: send data to the server
     // and once data is saved then close the modal
