@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthProvider";
 
 const SignUp = () => {
   const {
@@ -9,9 +10,19 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { createUser } = useContext(AuthContext);
+
   const [signUpError, setSignUPError] = useState("");
   const handleSignUp = (data) => {
     console.log(data);
+    createUser(data.email, data.password)
+      .then((res) => {
+        const user = res.user;
+        console.log(user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     setSignUPError("");
   };
 
@@ -76,6 +87,17 @@ const SignUp = () => {
             {errors.password && (
               <p className="text-red-500">{errors.password.message}</p>
             )}
+          </div>
+          <div className="form-control w-full max-w-xs mt-5">
+            <label htmlFor="image" className="block mb-2 text-sm">
+              Select Image:
+            </label>
+            <input
+              {...register("picture", { required: false })}
+              id="image"
+              accept="image/*"
+              type="file"
+            />
           </div>
           <input
             className="btn btn-accent w-full mt-4"
