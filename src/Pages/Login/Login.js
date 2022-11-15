@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider";
+
 const Login = () => {
+  const { signIn } = useContext(AuthContext);
   const {
     register,
     formState: { errors },
@@ -16,6 +19,16 @@ const Login = () => {
 
   const handleLogin = (data) => {
     console.log(data);
+
+    signIn(data.email, data.password)
+      .then((res) => {
+        const user = res.user;
+        console.log(user);
+      })
+      .catch((err) => {
+        setLoginError(err.message);
+      });
+
     setLoginError("");
   };
 
