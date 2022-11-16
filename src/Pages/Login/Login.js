@@ -10,7 +10,6 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const [data, setData] = useState("");
   const [loginError, setLoginError] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
@@ -22,8 +21,7 @@ const Login = () => {
 
     signin(data.email, data.password)
       .then((res) => {
-        const user = res.user;
-        console.log(user);
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         setLoginError(err.message);

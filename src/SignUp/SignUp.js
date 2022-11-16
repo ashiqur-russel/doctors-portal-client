@@ -6,13 +6,11 @@ import { AuthContext } from "../contexts/AuthProvider";
 
 const SignUp = () => {
   const {
-    user,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { createUser, updateUserProfile, loading, setLoading } =
-    useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
 
   const [signUpError, setSignUPError] = useState("");
   const handleSignUp = (data) => {
