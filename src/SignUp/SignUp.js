@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 
 const SignUp = () => {
@@ -12,6 +12,8 @@ const SignUp = () => {
   } = useForm();
   const { createUser, updateUserProfile } = useContext(AuthContext);
 
+  const navigate = useNavigate();
+
   const [signUpError, setSignUPError] = useState("");
   const handleSignUp = (data) => {
     console.log(data);
@@ -19,7 +21,6 @@ const SignUp = () => {
     const formData = new FormData();
     const name = data.name;
     formData.append("image", image);
-    console.log(formData);
 
     const url = `https://api.imgbb.com/1/upload?key=6f859024bd2f6172a80f12db0b47c603`;
     fetch(url, {
@@ -30,18 +31,16 @@ const SignUp = () => {
       .then((photoData) => {
         createUser(data.email, data.password)
           .then((res) => {
-            const user = res.user;
             setSignUPError("");
-            console.log(user);
             toast("User Created Successfully!");
-            console.log("Display name", data.name);
-            console.log("Display Url", photoData.data.display_url);
             const userInfo = {
               displayName: name,
               photoURL: photoData.data.display_url,
             };
             updateUserProfile(userInfo)
-              .then(() => {})
+              .then(() => {
+                navigate("/");
+              })
               .catch((err) => setSignUPError(err));
           })
           .catch((err) => {
