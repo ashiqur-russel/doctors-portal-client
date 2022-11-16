@@ -24,13 +24,34 @@ const Navbar = () => {
       <li>
         <Link to="/about">About</Link>
       </li>
-      <li>
-        <Link to="/reviews">Reviews</Link>
-      </li>
+
       {user?.uid ? (
-        <li>
-          <Link onClick={handleSignOut}>Logout</Link>
-        </li>
+        <>
+          <li>
+            {user.displayName ? (
+              <span>{user.displayName}</span>
+            ) : (
+              <span>
+                <h5>No Name</h5>
+              </span>
+            )}
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+          <li>
+            <Link onClick={handleSignOut}>Logout</Link>
+          </li>
+          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
+              {user.photoURL ? (
+                <img src={user.photoURL} alt="" />
+              ) : (
+                <img src="https://placeimg.com/80/80/people" alt="" />
+              )}
+            </div>
+          </label>
+        </>
       ) : (
         <li>
           <Link to="/login">Login</Link>

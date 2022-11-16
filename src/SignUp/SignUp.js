@@ -6,24 +6,69 @@ import { AuthContext } from "../contexts/AuthProvider";
 
 const SignUp = () => {
   const {
+    user,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile, loading, setLoading } =
+    useContext(AuthContext);
 
   const [signUpError, setSignUPError] = useState("");
   const handleSignUp = (data) => {
     console.log(data);
-    createUser(data.email, data.password)
-      .then((res) => {
-        const user = res.user;
-        console.log(user);
+    const image = data.image[0];
+    const formData = new FormData();
+    const name = data.name;
+    formData.append("image", image);
+    console.log(formData);
+
+    const url = `https://api.imgbb.com/1/upload?key=6f859024bd2f6172a80f12db0b47c603`;
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((photoData) => {
+        createUser(data.email, data.password)
+          .then((res) => {
+            const user = res.user;
+            setSignUPError("");
+            console.log(user);
+            toast("User Created Successfully!");
+            console.log("Display name", data.name);
+            console.log("Display Url", photoData.data.display_url);
+            const userInfo = {
+              displayName: name,
+              photoURL: photoData.data.display_url,
+            };
+            updateUserProfile(userInfo)
+              .then(() => {})
+              .catch((err) => setSignUPError(err));
+          })
+          .catch((err) => {
+            setSignUPError(err);
+          });
+        setSignUPError("");
       })
-      .catch((err) => {
-        console.log(err);
-      });
-    setSignUPError("");
+      .catch((err) => setSignUPError(err));
+
+    /* createUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast("User Created Successfully.");
+        const userInfo = {
+          displayName: name,
+        };
+        updateUserProfile(userInfo)
+          .then(() => {})
+          .catch((err) => console.log(err));
+      })
+      .catch((error) => {
+        console.log(error);
+        setSignUPError(error.message);
+      }); */
   };
 
   return (
@@ -93,7 +138,7 @@ const SignUp = () => {
               Select Image:
             </label>
             <input
-              {...register("picture", { required: false })}
+              {...register("image", { required: false })}
               id="image"
               accept="image/*"
               type="file"
