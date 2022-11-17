@@ -6,7 +6,7 @@ import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import MyAppointment from "../Pages/Dashboard/MyAppointment/MyAppointment";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
-import SignUp from "../SignUp/SignUp";
+import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([

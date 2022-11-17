@@ -12,9 +12,7 @@ const MyAppointment = () => {
     queryFn: async () => {
       const res = await fetch(url, {
         headers: {
-          authorization: `bearer ${localStorage.getItem(
-            "docotrs-portal-token"
-          )}`,
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
       });
       const data = await res.json();
@@ -24,9 +22,8 @@ const MyAppointment = () => {
 
   return (
     <div>
-      <div className="overflow-x-auto p-4 m-4">
-        <h3 className="text-3xl mb-3">My Appointments</h3>
-
+      <h3 className="text-3xl mb-5">My Appointments</h3>
+      <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
             <tr>
@@ -39,9 +36,9 @@ const MyAppointment = () => {
           </thead>
           <tbody>
             {bookings.map((booking, i) => (
-              <tr>
+              <tr key={booking._id}>
                 <th>{i + 1}</th>
-                <td>{booking?.patient}</td>
+                <td>{booking.patient}</td>
                 <td>{booking.treatment}</td>
                 <td>{booking.appointmentDate}</td>
                 <td>{booking.slot}</td>
