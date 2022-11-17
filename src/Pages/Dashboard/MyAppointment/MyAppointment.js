@@ -10,7 +10,13 @@ const MyAppointment = () => {
   const { data: bookings = [] } = useQuery({
     queryKey: ["bookings", user?.email],
     queryFn: async () => {
-      const res = await fetch(url);
+      const res = await fetch(url, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem(
+            "docotrs-portal-token"
+          )}`,
+        },
+      });
       const data = await res.json();
       return data;
     },
