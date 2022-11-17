@@ -16,7 +16,6 @@ const SignUp = () => {
 
   const [signUpError, setSignUPError] = useState("");
   const handleSignUp = (data) => {
-    console.log(data);
     const image = data.image[0];
     const formData = new FormData();
     const name = data.name;
@@ -39,7 +38,7 @@ const SignUp = () => {
             };
             updateUserProfile(userInfo)
               .then(() => {
-                navigate("/");
+                saveUser(data.name, data.email, photoData.data.display_url);
               })
               .catch((err) => setSignUPError(err));
           })
@@ -66,6 +65,22 @@ const SignUp = () => {
         console.log(error);
         setSignUPError(error.message);
       }); */
+  };
+
+  const saveUser = (name, email, photoUrl) => {
+    const user = { name, email, photoUrl };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Save User", data);
+        navigate("/");
+      });
   };
 
   return (
