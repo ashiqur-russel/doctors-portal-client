@@ -7,10 +7,10 @@ const Navbar = () => {
 
   const handleSignOut = () => {
     logout()
-      .then(() => {})
-      .catch((err) => {
+      .then(() => {
         localStorage.removeItem("accessToken");
-      });
+      })
+      .catch((err) => {});
   };
   const menuItens = (
     <>
