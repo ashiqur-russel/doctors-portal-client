@@ -9,7 +9,7 @@ const Navbar = () => {
     logout()
       .then(() => {})
       .catch((err) => {
-        console.log(err);
+        localStorage.removeItem("accessToken");
       });
   };
   const menuItens = (
