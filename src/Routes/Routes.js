@@ -53,6 +53,10 @@ const router = createBrowserRouter([
         path: "/dashboard/allusers",
         element: <AllUsers />,
       },
+      {
+        path: "/dashboard/myappointment",
+        element: <MyAppointment />,
+      },
     ],
   },
 ]);
