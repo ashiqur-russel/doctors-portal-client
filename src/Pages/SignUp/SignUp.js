@@ -12,13 +12,7 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  const [createdUserEmail, setCreatedUserEmail] = useState("");
-  const [token] = useToken(createdUserEmail);
   const { createUser, updateUserProfile, logout } = useContext(AuthContext);
-
-  if (token) {
-    navigate("/");
-  }
 
   const handleSignUp = (data) => {
     createUser(data.email, data.password)
@@ -49,10 +43,21 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setCreatedUserEmail(email);
+        generateToken(email);
+        navigate("/");
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const generateToken = (email) => {
+    fetch(`http://localhost:5000/jwt?email=${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.accessToken) {
+          localStorage.setItem("accessToken-portal", data.accessToken);
+        }
       });
   };
 
