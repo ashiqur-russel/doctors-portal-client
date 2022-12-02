@@ -12,7 +12,7 @@ const MyAppointment = () => {
     queryFn: async () => {
       const res = await fetch(url, {
         headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          authorization: `bearer ${localStorage.getItem("accessToken-portal")}`,
         },
       });
       const data = await res.json();

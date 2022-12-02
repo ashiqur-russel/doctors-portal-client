@@ -13,6 +13,12 @@ const Signup = () => {
   } = useForm();
   const navigate = useNavigate();
   const { createUser, updateUserProfile, logout } = useContext(AuthContext);
+  const [createdUserEmai, setCreatedUserEmail] = useState("");
+  const [token] = useToken(createdUserEmai);
+
+  if (token) {
+    navigate("/");
+  }
 
   const handleSignUp = (data) => {
     createUser(data.email, data.password)
@@ -43,14 +49,13 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        generateToken(email);
-        navigate("/");
+        setCreatedUserEmail(email);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
+  /* 
   const generateToken = (email) => {
     fetch(`http://localhost:5000/jwt?email=${email}`)
       .then((res) => res.json())
@@ -59,7 +64,7 @@ const Signup = () => {
           localStorage.setItem("accessToken-portal", data.accessToken);
         }
       });
-  };
+  }; */
 
   return (
     <div className="h-[800px] flex justify-center items-center">
