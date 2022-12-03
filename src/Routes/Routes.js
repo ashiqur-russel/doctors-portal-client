@@ -9,7 +9,7 @@ import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
-
+import AdminRoute from "./AdminRoute/AdminRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,7 +51,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/allusers",
-        element: <AllUsers />,
+        element: (
+          <AdminRoute>
+            {" "}
+            <AllUsers />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/myappointment",
