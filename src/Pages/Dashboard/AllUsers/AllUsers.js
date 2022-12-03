@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import toast from "react-hot-toast";
 
 const AllUsers = () => {
-  const { data: users } = useQuery({
+  const { data: users, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/users");
@@ -10,7 +11,23 @@ const AllUsers = () => {
       return data;
     },
   });
-
+  const handleAdmin = (id) => {
+    console.log("click", id);
+    fetch(`http://localhost:5000/users/admin/${id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken-portal")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success("Make Admin Successful!");
+          refetch();
+        }
+      });
+  };
   return (
     <div>
       <div>
@@ -23,11 +40,13 @@ const AllUsers = () => {
                 <th>Photo</th>
                 <th> Name</th>
                 <th> Email</th>
+                <th> Admin</th>
+                <th> Action</th>
               </tr>
             </thead>
             <tbody>
               {users?.map((user, i) => (
-                <tr key={user.key}>
+                <tr key={i}>
                   <th>{i + 1}</th>
                   <td>
                     <img
@@ -39,10 +58,19 @@ const AllUsers = () => {
                   </td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-
+                  <td>
+                    {user?.role !== "admin" && (
+                      <button
+                        onClick={() => handleAdmin(user?._id)}
+                        className="badge badge-outline badge-secondary hover:bg-gray-300"
+                      >
+                        Make Admin
+                      </button>
+                    )}
+                  </td>
                   <td>
                     <span className="badge badge-outline bg-red-300 text-white">
-                      Cancel
+                      Delete
                     </span>
                   </td>
                 </tr>
