@@ -65,7 +65,7 @@ const Adddoctors = () => {
             .then((res) => res.json())
             .then((data) => {
               toast.success("Doctor Added Successfullyy");
-              // navigate("/dashboard/managedoctors");
+              navigate("/dashboard/managedoctors");
             })
             .catch((err) => console.log(err));
         }
@@ -80,7 +80,7 @@ const Adddoctors = () => {
     <div className="bg-gray-100 h-screen">
       <div className="p-6">
         <h1>Add a New Doctor</h1>
-        <div className="w-4/12 p-3 bg-gray-200">
+        <div className="flex justify-center items-center p-3 bg-gray-200">
           <form onSubmit={handleSubmit(handleAddDoctor)}>
             <div className="form-control w-full max-w-xs">
               <label className="label">
@@ -154,11 +154,14 @@ const Adddoctors = () => {
                 <p className="text-red-600">{errors.password.message}</p>
               )}{" "}
             </div>
-            <input
-              className="btn btn-accent w-full mt-3"
-              value="Signup"
-              type="submit"
-            />
+            <div className="form-control w-full max-w-xs">
+              <input
+                className="btn btn-accent w-full  mt-3"
+                value="Signup"
+                type="submit"
+              />
+            </div>
+
             <div>
               <p className="text-red-600"></p>
             </div>

@@ -11,6 +11,7 @@ import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import Adddoctors from "../Pages/Dashboard/AddDoctors/Adddoctors";
+import ManageDoctors from "../Pages/Dashboard/ManageDoctors/ManageDoctors";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -65,6 +66,15 @@ const router = createBrowserRouter([
           <AdminRoute>
             {" "}
             <Adddoctors></Adddoctors>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/dashboard/managedoctors",
+        element: (
+          <AdminRoute>
+            {" "}
+            <ManageDoctors />
           </AdminRoute>
         ),
       },
