@@ -42,6 +42,32 @@ const Adddoctors = () => {
       .then((imageData) => {
         if (imageData.success) {
           console.log(imageData.data.url);
+
+          const doctor = {
+            name: data.name,
+            email: data.email,
+            speciality: data.speciality,
+            image: imageData.data.url,
+          };
+
+          //save doctors information to the database
+
+          fetch("http://localhost:5000/doctors", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              authorization: `bearer ${localStorage.getItem(
+                "accessToken-portal"
+              )}`,
+            },
+            body: JSON.stringify(doctor),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              toast.success("Doctor Added Successfullyy");
+              // navigate("/dashboard/managedoctors");
+            })
+            .catch((err) => console.log(err));
         }
       })
       .catch();
