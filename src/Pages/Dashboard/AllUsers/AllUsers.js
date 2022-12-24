@@ -69,7 +69,7 @@ const AllUsers = () => {
                     )}
                   </td>
                   <td>
-                    <span className="badge badge-outline bg-red-300 text-white">
+                    <span className="badge badge-outline bg-red-300 text-white hover:cursor">
                       Delete
                     </span>
                   </td>

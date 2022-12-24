@@ -1,8 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { useState } from "react";
+import ConfirmationModal from "../../Shared/ConfirmationModal/ConfirmationModal";
 import Loading from "../../Shared/Loading/Loading";
 
 const ManageDoctors = () => {
+  const [deletingDoctor, setDeletingDoctor] = useState(null);
   const { data: doctors, isLoading } = useQuery({
     queryKey: ["doctors"],
     queryFn: async () => {
@@ -17,9 +20,14 @@ const ManageDoctors = () => {
       return data;
     },
   });
-  const handleDeleteDoctor = (id) => {
-    console.log("object clicked", id);
+  const handleDeleteDoctor = (doctor) => {
+    console.log("object clicked", doctor);
   };
+
+  const closeModal = () => {
+    setDeletingDoctor(null);
+  };
+
   if (isLoading) {
     return <Loading />;
   }
@@ -40,33 +48,44 @@ const ManageDoctors = () => {
               </tr>
             </thead>
             <tbody>
-              {doctors?.map((doctor, i) => (
-                <tr key={i}>
-                  <th>{i + 1}</th>
-                  <td>
-                    <img
-                      src={doctor?.photoUrl}
-                      alt=""
-                      className="rounded-full"
-                      style={{ width: "50px" }}
-                    />
-                  </td>
-                  <td>{doctor.name}</td>
-                  <td>{doctor.email}</td>
+              {Array.isArray(doctors) &&
+                doctors?.map((doctor, i) => (
+                  <tr key={i}>
+                    <th>{i + 1}</th>
+                    <td>
+                      <img
+                        src={doctor?.image}
+                        alt=""
+                        className="rounded-full"
+                        style={{ width: "50px" }}
+                      />
+                    </td>
+                    <td>{doctor.name}</td>
+                    <td>{doctor.email}</td>
 
-                  <td>
-                    <span
-                      onClick={() => handleDeleteDoctor(doctor?._id)}
-                      className="badge badge-outline bg-red-300 text-white"
-                    >
-                      Delete
-                    </span>
-                  </td>
-                </tr>
-              ))}
+                    <td>
+                      <label
+                        htmlFor="confirmation_modal"
+                        onClick={() => setDeletingDoctor(doctor)}
+                        className="badge badge-outline bg-red-300 text-white"
+                      >
+                        Delete
+                      </label>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
+        {deletingDoctor && (
+          <ConfirmationModal
+            title={`Are you sure you want to delete?`}
+            message={`If you delete ${deletingDoctor.name}.it can not be recovered!`}
+            closeModal={closeModal}
+            successAction={handleDeleteDoctor}
+            modalData={deletingDoctor}
+          ></ConfirmationModal>
+        )}
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import BGImage from "../../../assets/images/bg.png";
 import Chair from "../../../assets/images/chair.png";
 import PrimaryButton from "../../../components/PrimaryButton/PrimaryButton";
@@ -13,11 +14,14 @@ const Banner = () => {
         <div>
           <h1 className="text-3xl font-bold">Your New Smile Starts Here!</h1>
           <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            Adults and kids, we welcome patients of all ages! Our team is
+            passionate about building lifetime relationships through positive
+            experiences.
           </p>
-          <PrimaryButton>Get Started</PrimaryButton>
+          <Link to="/appointment">
+            {" "}
+            <PrimaryButton>Book Online</PrimaryButton>
+          </Link>
         </div>
       </div>
     </div>
