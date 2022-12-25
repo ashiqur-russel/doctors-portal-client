@@ -16,3 +16,4 @@ Live Site : << https://arzt-praxis.web.app/>>
       3.About route not implemented yet.
       4.Admin can delete user and it will be removed from database
       5.Validation message.
+      6. Google signup/signin
