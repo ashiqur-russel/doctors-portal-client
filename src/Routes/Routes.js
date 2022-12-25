@@ -12,6 +12,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import Adddoctors from "../Pages/Dashboard/AddDoctors/Adddoctors";
 import ManageDoctors from "../Pages/Dashboard/ManageDoctors/ManageDoctors";
+import About from "../Pages/Shared/About/About";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/about",
+        element: <About></About>,
       },
       {
         path: "/appointment",
