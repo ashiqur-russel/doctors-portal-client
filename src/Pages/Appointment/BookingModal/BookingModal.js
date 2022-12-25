@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import toast from "react-hot-toast";
 const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
-  const { name, slots } = treatment;
+  const { name, slots, price } = treatment;
   const { user } = useContext(AuthContext);
 
   const date = format(selectedDate, "PP");
@@ -22,6 +22,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
       slot,
       email,
       phone,
+      price,
     };
     console.log(7 > 6 && 8 < 6 && 6 > 4);
 
