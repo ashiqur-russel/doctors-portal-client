@@ -14,12 +14,17 @@ const ManageDoctors = () => {
   } = useQuery({
     queryKey: ["doctors"],
     queryFn: async () => {
-      const response = await fetch("http://localhost:5000/doctors", {
-        method: "GET",
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken-portal")}`,
-        },
-      });
+      const response = await fetch(
+        "https://doctors-portal-ashiqur-russel.vercel.app/doctors",
+        {
+          method: "GET",
+          headers: {
+            authorization: `bearer ${localStorage.getItem(
+              "accessToken-portal"
+            )}`,
+          },
+        }
+      );
 
       const data = await response.json();
       return data;
@@ -28,12 +33,15 @@ const ManageDoctors = () => {
   const handleDeleteDoctor = (doctor) => {
     console.log("object clicked", doctor);
 
-    fetch(`http://localhost:5000/doctors/${doctor._id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken-portal")}`,
-      },
-    })
+    fetch(
+      `https://doctors-portal-ashiqur-russel.vercel.app/doctors/${doctor._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken-portal")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

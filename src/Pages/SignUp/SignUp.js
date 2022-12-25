@@ -40,7 +40,7 @@ const Signup = () => {
 
   const saveUser = (name, email) => {
     const user = { name, email };
-    fetch(`http://localhost:5000/users`, {
+    fetch(`https://doctors-portal-ashiqur-russel.vercel.app/users`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -57,7 +57,7 @@ const Signup = () => {
   };
   /* 
   const generateToken = (email) => {
-    fetch(`http://localhost:5000/jwt?email=${email}`)
+    fetch(`https://doctors-portal-ashiqur-russel.vercel.app/jwt?email=${email}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.accessToken) {
