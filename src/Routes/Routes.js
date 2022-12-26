@@ -3,8 +3,8 @@ import DashboarLayout from "../Layout/DashboarLayout";
 import Main from "../Layout/Main";
 import Appointment from "../Pages/Appointment/Appointment/Appointment";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
-import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
-import MyAppointment from "../Pages/Dashboard/MyAppointment/MyAppointment";
+/* import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
+ */ import MyAppointment from "../Pages/Dashboard/MyAppointment/MyAppointment";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
@@ -14,10 +14,13 @@ import Adddoctors from "../Pages/Dashboard/AddDoctors/Adddoctors";
 import ManageDoctors from "../Pages/Dashboard/ManageDoctors/ManageDoctors";
 import About from "../Pages/Shared/About/About";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import DisplayError from "../Pages/Shared/DisplayError/DisplayError";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <DisplayError></DisplayError>,
+
     children: [
       {
         path: "/",
@@ -47,16 +50,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
+
     element: (
       <PrivateRoute>
         <DashboarLayout></DashboarLayout>
       </PrivateRoute>
     ),
+    errorElement: <DisplayError></DisplayError>,
     children: [
       {
         path: "/dashboard",
         element: <MyAppointment></MyAppointment>,
       },
+
       {
         path: "/dashboard/allusers",
         element: (
