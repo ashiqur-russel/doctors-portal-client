@@ -22,7 +22,7 @@ const Payment = () => {
       </p>
       <div className="mt-4 p-4 w-96 my-12">
         <Elements stripe={stripePromise}>
-          <CheckoutForm />
+          <CheckoutForm booking={booking} />
         </Elements>
       </div>
     </div>
