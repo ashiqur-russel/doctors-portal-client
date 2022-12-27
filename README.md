@@ -1,6 +1,6 @@
 # Project Doctors Portal
 
-Live Site : << https://arzt-praxis.web.app/>>
+Live Site : https://arzt-praxis.web.app/
 Sever-Side Code : https://github.com/ashiqur-russel/doctors-portal-server
 
       1 . Doctors Portal is an Appointment System for a Dental Care System where people can book available appointment on the specific day.
@@ -13,8 +13,12 @@ Sever-Side Code : https://github.com/ashiqur-russel/doctors-portal-server
 # Further Development Scope ( Under developement...)
 
       1. For admin dashboard admin can add doctor for the specfic service also can remove doctor.(done)
-      2. For users payment system will be implemented by Stripe payment gateway. (test Mode)
-      3.About route not implemented yet.
-      4.Admin can delete user and it will be removed from database
-      5.Validation message.
+      2. For users payment system will be implemented by Stripe payment gateway. (test Mode) (done)
+      3. About route not implemented yet.
+      4. Admin can delete user and it will be removed from database
+      5. Validation message.
       6. Google signup/signin
+      7. Appointment System more validation needed 
+                  Eg.- # user should not book an appointment same day at the same time for different dental service.
+                       # Previous dates should be disbaled for booking system.
+            
