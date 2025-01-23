@@ -15,7 +15,7 @@ const ManageDoctors = () => {
     queryKey: ["doctors"],
     queryFn: async () => {
       const response = await fetch(
-        "https://doctors-portal-ashiqur-russel.vercel.app/doctors",
+        "https://doctors-portal-server-six-theta.vercel.app/doctors",
         {
           method: "GET",
           headers: {
@@ -34,7 +34,7 @@ const ManageDoctors = () => {
     console.log("object clicked", doctor);
 
     fetch(
-      `https://doctors-portal-ashiqur-russel.vercel.app/doctors/${doctor._id}`,
+      `https://doctors-portal-server-six-theta.vercel.app/doctors/${doctor._id}`,
       {
         method: "DELETE",
         headers: {

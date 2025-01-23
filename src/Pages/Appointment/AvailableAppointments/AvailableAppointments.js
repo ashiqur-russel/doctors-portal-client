@@ -17,7 +17,7 @@ const AvailableAppointments = ({ selectedDate }) => {
     queryKey: ["appointmentOptions", date],
     queryFn: async () => {
       const res = await fetch(
-        `https://doctors-portal-ashiqur-russel.vercel.app/appointmentOptions?date=${date}`
+        `https://doctors-portal-server-six-theta.vercel.app/appointmentOptions?date=${date}`
       );
       const data = await res.json();
       return data;
@@ -25,7 +25,7 @@ const AvailableAppointments = ({ selectedDate }) => {
   });
 
   /*   useEffect(() => {
-    fetch("https://doctors-portal-ashiqur-russel.vercel.app/appointmentOptions")
+    fetch("https://doctors-portal-server-six-theta.vercel.app/appointmentOptions")
       .then((res) => res.json())
       .then((data) => setAppointmentOptions(data));
   }, []); */

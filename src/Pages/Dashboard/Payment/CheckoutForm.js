@@ -15,7 +15,7 @@ const CheckoutForm = ({ booking }) => {
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     fetch(
-      "https://doctors-portal-ashiqur-russel.vercel.app/create-payment-intent",
+      "https://doctors-portal-server-six-theta.vercel.app/create-payment-intent",
       {
         method: "POST",
         headers: {
@@ -87,7 +87,7 @@ const CheckoutForm = ({ booking }) => {
         email,
         bookingId: _id,
       };
-      fetch("https://doctors-portal-ashiqur-russel.vercel.app/payments", {
+      fetch("https://doctors-portal-server-six-theta.vercel.app/payments", {
         method: "POST",
         headers: {
           "content-type": "application/json",

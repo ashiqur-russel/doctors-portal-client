@@ -6,7 +6,7 @@ export const useAdmin = (email) => {
   useEffect(() => {
     if (email) {
       fetch(
-        `https://doctors-portal-ashiqur-russel.vercel.app/users/admin/${email}`
+        `https://doctors-portal-server-six-theta.vercel.app/users/admin/${email}`
       )
         .then((res) => res.json())
         .then((data) => {

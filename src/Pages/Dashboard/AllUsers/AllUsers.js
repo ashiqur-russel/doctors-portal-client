@@ -7,7 +7,7 @@ const AllUsers = () => {
     queryKey: ["users"],
     queryFn: async () => {
       const res = await fetch(
-        "https://doctors-portal-ashiqur-russel.vercel.app/users"
+        "https://doctors-portal-server-six-theta.vercel.app/users"
       );
       const data = await res.json();
       return data;
@@ -16,7 +16,7 @@ const AllUsers = () => {
   const handleAdmin = (id) => {
     console.log("click", id);
     fetch(
-      `https://doctors-portal-ashiqur-russel.vercel.app/users/admin/${id}`,
+      `https://doctors-portal-server-six-theta.vercel.app/users/admin/${id}`,
       {
         method: "PUT",
         headers: {

@@ -98,7 +98,7 @@ const router = createBrowserRouter([
         path: "/dashboard/payment/:id",
         loader: ({ params }) =>
           fetch(
-            `https://doctors-portal-ashiqur-russel.vercel.app/bookings/${params.id}`
+            `https://doctors-portal-server-six-theta.vercel.app/bookings/${params.id}`
           ),
         element: (
           <AdminRoute>
