@@ -14,7 +14,6 @@ const AllUsers = () => {
     },
   });
   const handleAdmin = (id) => {
-    console.log("click", id);
     fetch(
       `https://doctors-portal-server-six-theta.vercel.app/users/admin/${id}`,
       {
@@ -26,7 +25,6 @@ const AllUsers = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount > 0) {
           toast.success("Make Admin Successful!");
           refetch();

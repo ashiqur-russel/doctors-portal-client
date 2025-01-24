@@ -24,13 +24,11 @@ const Signup = () => {
     createUser(data.email, data.password)
       .then((res) => {
         const user = res.user;
-        console.log(user);
         const userInfo = {
           displayName: data.name,
         };
         updateUserProfile(userInfo)
           .then(() => {
-            console.log(data.name, data.email);
             saveUser(data.name, data.email);
           })
           .catch((err) => console.log(err));

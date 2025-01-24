@@ -3,8 +3,7 @@ import DashboarLayout from "../Layout/DashboarLayout";
 import Main from "../Layout/Main";
 import Appointment from "../Pages/Appointment/Appointment/Appointment";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
-/* import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
- */ import MyAppointment from "../Pages/Dashboard/MyAppointment/MyAppointment";
+ import MyAppointment from "../Pages/Dashboard/MyAppointment/MyAppointment";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
@@ -97,15 +96,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/payment/:id",
         loader: ({ params }) =>
-          fetch(
-            `https://doctors-portal-server-six-theta.vercel.app/bookings/${params.id}`
-          ),
-        element: (
-          <AdminRoute>
-            <Payment></Payment>
-          </AdminRoute>
-        ),
+          fetch(`https://doctors-portal-server-six-theta.vercel.app/bookings/${params.id}`, {
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("accessToken-portal")}`,
+            },
+          }),
+        element: <Payment></Payment>,
       },
+      
     ],
   },
 ]);

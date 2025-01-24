@@ -27,9 +27,6 @@ const Adddoctors = () => {
   const handleAddDoctor = (data) => {
     const imageHostingKey = process.env.REACT_APP_API_KEY;
 
-    console.log(data);
-    console.log(imageHostingKey);
-
     const image = data.image[0];
     const formData = new FormData();
     formData.append("image", image);
@@ -41,7 +38,6 @@ const Adddoctors = () => {
       .then((res) => res.json())
       .then((imageData) => {
         if (imageData.success) {
-          console.log(imageData.data.url);
 
           const doctor = {
             name: data.name,

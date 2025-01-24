@@ -31,7 +31,6 @@ const ManageDoctors = () => {
     },
   });
   const handleDeleteDoctor = (doctor) => {
-    console.log("object clicked", doctor);
 
     fetch(
       `https://doctors-portal-server-six-theta.vercel.app/doctors/${doctor._id}`,
@@ -44,7 +43,6 @@ const ManageDoctors = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.deletedCount > 0) {
           refetch();
           toast.success(`Doctor ${doctor.name} deleted successfully!`);

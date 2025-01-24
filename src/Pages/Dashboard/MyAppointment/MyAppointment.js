@@ -7,19 +7,21 @@ const MyAppointment = () => {
   const { user } = useContext(AuthContext);
 
   const url = `https://doctors-portal-server-six-theta.vercel.app/bookings?email=${user?.email}`;
+const { data: bookings } = useQuery({
+  queryKey: ["bookings"],
+  queryFn: async () => {
+    const res = await fetch(url, {
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken-portal")}`,
+      },
+    });
+    if (!res.ok) {
+      console.error("Error fetching bookings:", res.statusText);
+    }
+    return await res.json();
+  },
+});
 
-  const { data: bookings } = useQuery({
-    queryKey: ["bookings"],
-    queryFn: async () => {
-      const res = await fetch(url, {
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken-portal")}`,
-        },
-      });
-      const data = await res.json();
-      return data;
-    },
-  });
   return (
     <div>
       <h3 className="mb-4">My Appointment</h3>

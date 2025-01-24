@@ -24,7 +24,6 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
       phone,
       price,
     };
-    console.log(7 > 6 && 8 < 6 && 6 > 4);
 
     // TODO: send data to the server
     // and once data is saved then close the modal
@@ -40,7 +39,6 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
       .then((res) => res.json())
 
       .then((data) => {
-        console.log(data);
         if (data.acknowledged) {
           setTreatment(null);
           toast.success("Booking Confirmed");
