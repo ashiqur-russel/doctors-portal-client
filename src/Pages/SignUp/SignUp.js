@@ -1,9 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, {  useContext } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
-import useToken from "../../hooks/useToken";
 
 const Signup = () => {
   const {
@@ -12,13 +10,7 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  const { createUser, updateUserProfile, logout } = useContext(AuthContext);
-  const [createdUserEmai, setCreatedUserEmail] = useState("");
-  const [token] = useToken(createdUserEmai);
-
-  if (token) {
-    navigate("/");
-  }
+  const { createUser, updateUserProfile, logout } = useContext(AuthContext); 
 
   const handleSignUp = (data) => {
     createUser(data.email, data.password)
@@ -27,13 +19,15 @@ const Signup = () => {
         const userInfo = {
           displayName: data.name,
         };
-        updateUserProfile(userInfo)
+        updateUserProfile(userInfo) 
           .then(() => {
-            saveUser(data.name, data.email);
+            saveUser(data.name, data.email); 
+            logout(); 
+            navigate("/login"); 
           })
-          .catch((err) => console.log(err));
+          .catch((err) => console.log("Error updating profile: ", err));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("Error creating user: ", err));
   };
 
   const saveUser = (name, email) => {
@@ -47,22 +41,11 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setCreatedUserEmail(email);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  /* 
-  const generateToken = (email) => {
-    fetch(`https://doctors-portal-server-six-theta.vercel.app/jwt?email=${email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.accessToken) {
-          localStorage.setItem("accessToken-portal", data.accessToken);
-        }
-      });
-  }; */
 
   return (
     <div className="h-[800px] flex justify-center items-center">
@@ -135,6 +118,7 @@ const Signup = () => {
       </div>
     </div>
   );
+
 };
 
 export default Signup;
