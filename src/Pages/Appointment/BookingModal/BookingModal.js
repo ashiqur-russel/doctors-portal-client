@@ -33,6 +33,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
       method: "POST",
       headers: {
         "Content-type": "application/json",
+        "authorization": `Bearer ${localStorage.getItem("accessToken-portal")}`,
       },
       body: JSON.stringify(booking),
     })

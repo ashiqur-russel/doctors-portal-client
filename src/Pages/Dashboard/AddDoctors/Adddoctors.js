@@ -25,7 +25,7 @@ const Adddoctors = () => {
     },
   });
   const handleAddDoctor = (data) => {
-    const imageHostingKey = process.env.REACT_APP_API_KEY;
+    const imageHostingKey = process.env.REACT_APP_imgbb_key;
 
     const image = data.image[0];
     const formData = new FormData();
