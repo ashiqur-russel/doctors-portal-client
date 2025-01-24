@@ -10,14 +10,34 @@ const Navbar = () => {
       .then(() => {
         localStorage.removeItem("accessToken");
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.error("Logout error:", err);
+      });
   };
-  const menuItens = (
+
+  const renderUserAvatar = () => {
+    if (user?.photoURL) {
+      return <img src={user.photoURL} alt="User Avatar" />;
+    } else {
+      const initials = user?.displayName
+        ? user.displayName
+            .split(" ")
+            .map((name) => name.charAt(0).toUpperCase())
+            .join("")
+        : "NN"; 
+      return (
+        <div className="w-10 h-10 rounded-full bg-gray-400 text-white flex items-center justify-center">
+          {initials}
+        </div>
+      );
+    }
+  };
+
+  const menuItems = (
     <>
       <li>
         <Link to="/">Home</Link>
       </li>
-
       <li>
         <Link to="/appointment">Appointment</Link>
       </li>
@@ -28,12 +48,10 @@ const Navbar = () => {
       {user?.uid ? (
         <>
           <li>
-            {user.displayName ? (
+            {user?.displayName ? (
               <span>{user.displayName}</span>
             ) : (
-              <span>
-                <h5>No Name</h5>
-              </span>
+              <span>No Name</span>
             )}
           </li>
           <li>
@@ -43,13 +61,7 @@ const Navbar = () => {
             <Link onClick={handleSignOut}>Logout</Link>
           </li>
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              {user.photoURL ? (
-                <img src={user.photoURL} alt="" />
-              ) : (
-                <img src="https://placeimg.com/80/80/people" alt="" />
-              )}
-            </div>
+            <div className="w-10 rounded-full">{renderUserAvatar()}</div>
           </label>
         </>
       ) : (
@@ -59,6 +71,7 @@ const Navbar = () => {
       )}
     </>
   );
+
   return (
     <div className="navbar bg-base-100 flex justify-between">
       <div className="navbar-start">
@@ -83,16 +96,18 @@ const Navbar = () => {
             tabIndex={1}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            {menuItens}
+            {menuItems}
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost normal-case text-xl">
           Doctors Chamber
         </Link>
       </div>
+
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-0">{menuItens}</ul>
+        <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
+
       <label
         tabIndex={2}
         className="btn btn-ghost lg:hidden"
