@@ -34,7 +34,7 @@ const AllUsers = () => {
   return (
     <div>
       <div>
-        <h3 className="mb-4">My Appointment</h3>
+        <h3 className="mb-4">All User</h3>
         <div className="overflow-x-auto">
           <table className="table w-full">
             <thead>
